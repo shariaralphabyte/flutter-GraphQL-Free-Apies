@@ -7,8 +7,8 @@ part 'country_entity.g.dart';
 @freezed
 class Language with _$Language {
   const factory Language({
-    required String code,
-    required String name,
+    @Default('') String code,
+    @Default('') String name,
   }) = _Language;
 
   factory Language.fromJson(Map<String, dynamic> json) =>
@@ -22,11 +22,11 @@ class Country with _$Country {
   const factory Country({
     required String code,
     required String name,
-    required String native,
-    required String capital,
-    required String emoji,
-    required String currency,
-    required List<Language> languages,
+    @Default('') String native,
+    @Default('') String capital,
+    @Default('') String emoji,
+    @Default('') String currency,
+    @Default([]) List<Language> languages,
   }) = _Country;
 
   factory Country.fromJson(Map<String, dynamic> json) =>

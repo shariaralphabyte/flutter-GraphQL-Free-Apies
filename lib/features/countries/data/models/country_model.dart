@@ -12,11 +12,11 @@ class CountryModel with _$CountryModel {
   const factory CountryModel({
     required String code,
     required String name,
-    required String native,
-    required String capital,
-    required String emoji,
-    required String currency,
-    required List<LanguageModel> languages,
+    @Default('') String native,
+    @Default('') String capital,
+    @Default('') String emoji,
+    @Default('') String currency,
+    @Default([]) List<LanguageModel> languages,
   }) = _CountryModel;
 
   factory CountryModel.fromJson(Map<String, dynamic> json) =>
@@ -39,8 +39,8 @@ extension CountryModelX on CountryModel {
 @freezed
 class LanguageModel with _$LanguageModel {
   const factory LanguageModel({
-    required String code,
-    required String name,
+    @Default('') String code,
+    @Default('') String name,
   }) = _LanguageModel;
 
   factory LanguageModel.fromJson(Map<String, dynamic> json) =>
