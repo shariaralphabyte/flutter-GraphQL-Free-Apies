@@ -188,11 +188,11 @@ class _$CountryModelImpl extends _CountryModel {
   const _$CountryModelImpl(
       {required this.code,
       required this.name,
-      required this.native,
-      required this.capital,
-      required this.emoji,
-      required this.currency,
-      required final List<LanguageModel> languages})
+      this.native = '',
+      this.capital = '',
+      this.emoji = '',
+      this.currency = '',
+      final List<LanguageModel> languages = const []})
       : _languages = languages,
         super._();
 
@@ -204,15 +204,20 @@ class _$CountryModelImpl extends _CountryModel {
   @override
   final String name;
   @override
+  @JsonKey()
   final String native;
   @override
+  @JsonKey()
   final String capital;
   @override
+  @JsonKey()
   final String emoji;
   @override
+  @JsonKey()
   final String currency;
   final List<LanguageModel> _languages;
   @override
+  @JsonKey()
   List<LanguageModel> get languages {
     if (_languages is EqualUnmodifiableListView) return _languages;
     // ignore: implicit_dynamic_type
@@ -265,11 +270,11 @@ abstract class _CountryModel extends CountryModel {
   const factory _CountryModel(
       {required final String code,
       required final String name,
-      required final String native,
-      required final String capital,
-      required final String emoji,
-      required final String currency,
-      required final List<LanguageModel> languages}) = _$CountryModelImpl;
+      final String native,
+      final String capital,
+      final String emoji,
+      final String currency,
+      final List<LanguageModel> languages}) = _$CountryModelImpl;
   const _CountryModel._() : super._();
 
   factory _CountryModel.fromJson(Map<String, dynamic> json) =
@@ -400,14 +405,16 @@ class __$$LanguageModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LanguageModelImpl implements _LanguageModel {
-  const _$LanguageModelImpl({required this.code, required this.name});
+  const _$LanguageModelImpl({this.code = '', this.name = ''});
 
   factory _$LanguageModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LanguageModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final String code;
   @override
+  @JsonKey()
   final String name;
 
   @override
@@ -445,9 +452,8 @@ class _$LanguageModelImpl implements _LanguageModel {
 }
 
 abstract class _LanguageModel implements LanguageModel {
-  const factory _LanguageModel(
-      {required final String code,
-      required final String name}) = _$LanguageModelImpl;
+  const factory _LanguageModel({final String code, final String name}) =
+      _$LanguageModelImpl;
 
   factory _LanguageModel.fromJson(Map<String, dynamic> json) =
       _$LanguageModelImpl.fromJson;

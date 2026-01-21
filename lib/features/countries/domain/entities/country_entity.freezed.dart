@@ -115,14 +115,16 @@ class __$$LanguageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LanguageImpl implements _Language {
-  const _$LanguageImpl({required this.code, required this.name});
+  const _$LanguageImpl({this.code = '', this.name = ''});
 
   factory _$LanguageImpl.fromJson(Map<String, dynamic> json) =>
       _$$LanguageImplFromJson(json);
 
   @override
+  @JsonKey()
   final String code;
   @override
+  @JsonKey()
   final String name;
 
   @override
@@ -160,9 +162,8 @@ class _$LanguageImpl implements _Language {
 }
 
 abstract class _Language implements Language {
-  const factory _Language(
-      {required final String code,
-      required final String name}) = _$LanguageImpl;
+  const factory _Language({final String code, final String name}) =
+      _$LanguageImpl;
 
   factory _Language.fromJson(Map<String, dynamic> json) =
       _$LanguageImpl.fromJson;
@@ -351,11 +352,11 @@ class _$CountryImpl extends _Country {
   const _$CountryImpl(
       {required this.code,
       required this.name,
-      required this.native,
-      required this.capital,
-      required this.emoji,
-      required this.currency,
-      required final List<Language> languages})
+      this.native = '',
+      this.capital = '',
+      this.emoji = '',
+      this.currency = '',
+      final List<Language> languages = const []})
       : _languages = languages,
         super._();
 
@@ -367,15 +368,20 @@ class _$CountryImpl extends _Country {
   @override
   final String name;
   @override
+  @JsonKey()
   final String native;
   @override
+  @JsonKey()
   final String capital;
   @override
+  @JsonKey()
   final String emoji;
   @override
+  @JsonKey()
   final String currency;
   final List<Language> _languages;
   @override
+  @JsonKey()
   List<Language> get languages {
     if (_languages is EqualUnmodifiableListView) return _languages;
     // ignore: implicit_dynamic_type
@@ -428,11 +434,11 @@ abstract class _Country extends Country {
   const factory _Country(
       {required final String code,
       required final String name,
-      required final String native,
-      required final String capital,
-      required final String emoji,
-      required final String currency,
-      required final List<Language> languages}) = _$CountryImpl;
+      final String native,
+      final String capital,
+      final String emoji,
+      final String currency,
+      final List<Language> languages}) = _$CountryImpl;
   const _Country._() : super._();
 
   factory _Country.fromJson(Map<String, dynamic> json) = _$CountryImpl.fromJson;

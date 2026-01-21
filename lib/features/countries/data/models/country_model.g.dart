@@ -10,13 +10,14 @@ _$CountryModelImpl _$$CountryModelImplFromJson(Map<String, dynamic> json) =>
     _$CountryModelImpl(
       code: json['code'] as String,
       name: json['name'] as String,
-      native: json['native'] as String,
-      capital: json['capital'] as String,
-      emoji: json['emoji'] as String,
-      currency: json['currency'] as String,
-      languages: (json['languages'] as List<dynamic>)
-          .map((e) => LanguageModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      native: json['native'] as String? ?? '',
+      capital: json['capital'] as String? ?? '',
+      emoji: json['emoji'] as String? ?? '',
+      currency: json['currency'] as String? ?? '',
+      languages: (json['languages'] as List<dynamic>?)
+              ?.map((e) => LanguageModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CountryModelImplToJson(_$CountryModelImpl instance) =>
@@ -32,8 +33,8 @@ Map<String, dynamic> _$$CountryModelImplToJson(_$CountryModelImpl instance) =>
 
 _$LanguageModelImpl _$$LanguageModelImplFromJson(Map<String, dynamic> json) =>
     _$LanguageModelImpl(
-      code: json['code'] as String,
-      name: json['name'] as String,
+      code: json['code'] as String? ?? '',
+      name: json['name'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$LanguageModelImplToJson(_$LanguageModelImpl instance) =>
