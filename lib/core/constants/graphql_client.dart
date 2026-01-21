@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class GraphQLConfig {
-  static const String _graphqlEndpoint =
-      'https://countries.trevorblades.com/';
+  static const String _graphqlEndpoint = 'https://countries.trevorblades.com/';
 
   static HttpLink get httpLink => HttpLink(_graphqlEndpoint);
 
