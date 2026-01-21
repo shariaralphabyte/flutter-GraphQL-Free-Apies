@@ -1,0 +1,51 @@
+name: countries_app
+description: A professional GraphQL Countries app
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # GraphQL
+  graphql_flutter: ^5.1.0
+
+  # Riverpod
+  flutter_riverpod: ^2.4.0
+  riverpod_annotation: ^2.3.0
+
+  # State Management Helpers
+  riverpod_generator: ^2.3.0
+
+  # Serialization
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+
+  # Utilities
+  equatable: ^2.0.5
+
+  # UI
+  shimmer: ^3.0.0
+  pull_to_refresh: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Build tools
+  build_runner: ^2.4.7
+
+  # Code generation
+  riverpod_generator: ^2.3.0
+  freezed: ^2.4.5
+  json_serializable: ^6.7.1
+
+  # Linting
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
