@@ -1,7 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../core/graphql_client.dart';
+import '../../../../core/constants/graphql_client.dart';
 import '../../data/datasources/country_remote_data_source.dart';
 import '../../data/repositories/country_repository_impl.dart';
 import '../../domain/entities/country_entity.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'core/graphql_client.dart';
+import 'core/constants/graphql_client.dart';
 import 'features/countries/presentation/screens/country_list_screen.dart';
 
 void main() async {
