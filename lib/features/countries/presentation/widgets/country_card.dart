@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/country_entity.dart';
+import '../screens/country_detail_screen.dart';
 
 class CountryCard extends ConsumerWidget {
   final Country country;
@@ -120,5 +121,3 @@ class CountryCard extends ConsumerWidget {
   }
 }
 
-// Import for CountryDetailScreen
-import '../screens/country_detail_screen.dart';

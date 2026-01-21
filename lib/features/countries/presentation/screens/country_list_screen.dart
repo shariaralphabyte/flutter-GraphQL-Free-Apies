@@ -1,9 +1,12 @@
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/country_entity.dart';
+import '../providers/country_provider.dart';
 import '../widgets/country_card.dart';
+import '../widgets/country_search_bar.dart';
+
 
 class CountryListScreen extends ConsumerStatefulWidget {
   const CountryListScreen({super.key});
@@ -30,13 +33,13 @@ class _CountryListScreenState extends ConsumerState<CountryListScreen> {
   void _onScroll() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
-      ref.read(countryListNotifierProvider.notifier).loadMore();
+      ref.read(countryListNotifierProvider(limit: 20, offset: 0).notifier).loadMore();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final countriesAsync = ref.watch(countryListNotifierProvider);
+    final countriesAsync = ref.watch(countryListNotifierProvider(limit: 20, offset: 0));
     final searchResultsAsync = ref.watch(countrySearchNotifierProvider);
 
     return Scaffold(
@@ -44,7 +47,7 @@ class _CountryListScreenState extends ConsumerState<CountryListScreen> {
         title: const Text('Countries'),
         actions: [
           IconButton(
-            onPressed: () => ref.read(countryListNotifierProvider.notifier).refresh(),
+            onPressed: () => ref.read(countryListNotifierProvider(limit: 20, offset: 0).notifier).refresh(),
             icon: const Icon(Icons.refresh),
           ),
         ],
@@ -84,7 +87,7 @@ class _CountryListScreenState extends ConsumerState<CountryListScreen> {
       data: (countries) {
         return RefreshIndicator(
           onRefresh: () =>
-              ref.read(countryListNotifierProvider.notifier).refresh(),
+              ref.read(countryListNotifierProvider(limit: 20, offset: 0).notifier).refresh(),
           child: ListView.builder(
             controller: _scrollController,
             itemCount: countries.length + 1,

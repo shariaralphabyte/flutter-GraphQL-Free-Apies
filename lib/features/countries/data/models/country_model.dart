@@ -21,8 +21,10 @@ class CountryModel with _$CountryModel {
 
   factory CountryModel.fromJson(Map<String, dynamic> json) =>
       _$CountryModelFromJson(json);
+}
 
-  // Convert to entity
+// Extension for toEntity method
+extension CountryModelX on CountryModel {
   Country toEntity() => Country(
     code: code,
     name: name,
@@ -43,6 +45,9 @@ class LanguageModel with _$LanguageModel {
 
   factory LanguageModel.fromJson(Map<String, dynamic> json) =>
       _$LanguageModelFromJson(json);
+}
 
+// Extension for toEntity method
+extension LanguageModelX on LanguageModel {
   Language toEntity() => Language(code: code, name: name);
 }

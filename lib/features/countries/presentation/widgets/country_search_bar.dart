@@ -1,9 +1,11 @@
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 class CountrySearchBar extends StatefulWidget {
   final Function(String) onSearch;
-  final VoidCallback onClear;x
+  final VoidCallback onClear;
+
   const CountrySearchBar({
     super.key,
     required this.onSearch,
@@ -16,22 +18,29 @@ class CountrySearchBar extends StatefulWidget {
 
 class _CountrySearchBarState extends State<CountrySearchBar> {
   final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  Timer? _debounce;
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _controller.dispose();
-    _focusNode.dispose();
     super.dispose();
   }
 
-  void _onSearchChanged(String value) {
-    widget.onSearch(value);
+  void _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      if (query.isEmpty) {
+        widget.onClear();
+      } else {
+        widget.onSearch(query);
+      }
+    });
   }
 
   void _clearSearch() {
     _controller.clear();
-    _focusNode.unfocus();
     widget.onClear();
   }
 
@@ -39,22 +48,22 @@ class _CountrySearchBarState extends State<CountrySearchBar> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
-      focusNode: _focusNode,
+      onChanged: _onSearchChanged,
       decoration: InputDecoration(
+        hintText: 'Search countries...',
         prefixIcon: const Icon(Icons.search),
         suffixIcon: _controller.text.isNotEmpty
             ? IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: _clearSearch,
-        )
+                icon: const Icon(Icons.clear),
+                onPressed: _clearSearch,
+              )
             : null,
-        hintText: 'Search countries...',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        filled: true,
+        fillColor: Theme.of(context).cardColor,
       ),
-      onChanged: _onSearchChanged,
     );
   }
 }

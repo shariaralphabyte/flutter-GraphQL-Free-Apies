@@ -15,6 +15,7 @@ class CountryRepositoryImpl implements CountryRepository {
   @override
   Future<Country> getCountry({
     required String code,
+    bool withLanguages = true,
   }) async {
     try {
       final data = await _remoteDataSource.getCountry(
